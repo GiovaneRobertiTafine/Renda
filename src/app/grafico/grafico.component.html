@@ -1,0 +1,10 @@
+<mat-card fxFlex>
+    <mat-card-title>
+        Chart
+    </mat-card-title>
+    <mat-card-content>
+        <div echarts *ngIf="reloadChart" [options]="options" class="demo-chart"></div>
+    </mat-card-content>
+    <br>
+    <button (click)="console(records)">Click</button>
+</mat-card>
