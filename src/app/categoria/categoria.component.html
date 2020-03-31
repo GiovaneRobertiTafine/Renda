@@ -19,10 +19,10 @@
             </div>
         </form>
 
-        <mat-list>
+        <mat-list class="list">
             <h3 mat-subheader>Categories</h3>
             <mat-list-item *ngFor="let cat of categories">
-                <mat-icon mat-list-icon>folder</mat-icon>
+                <mat-icon mat-list-icon>bookmark</mat-icon>
                 <h4 mat-line>{{ cat.name }}</h4>
                 <button mat-icon-button color="accent" (click)="delete(cat)">
                     <mat-icon>delete</mat-icon>

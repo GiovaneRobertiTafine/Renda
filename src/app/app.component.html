@@ -1,18 +1,19 @@
-<mat-toolbar color="primary">
+<mat-toolbar fxLayout color="primary">
   <mat-toolbar-row>
     <span>Renda</span>
   </mat-toolbar-row>
 </mat-toolbar>
+<div>
+  <mat-card>
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="10px" fxLayoutAlign="space-between stretch">
+      <app-categoria fxFlex="100%" fxFlex.gt-sm="45%"></app-categoria>
+      <app-renda fxFlex="100%" fxFlex.gt-sm="55%"></app-renda>
+    </div>
+  </mat-card>
 
-<mat-card>
-  <div fxLayout="row" fxLayoutAlign="space-between stretch">
-    <app-categoria fxFlex="40"></app-categoria>
-    <app-renda fxFlex="55"></app-renda>
-  </div>
-</mat-card>
-
-<mat-card>
-  <div fxLayout="row" fxLayoutAlign="space-between stretch">
-    <app-grafico fxFlex></app-grafico>
-  </div>
-</mat-card>
+  <mat-card>
+    <div fxLayout="row" fxLayoutAlign="space-between stretch">
+      <app-grafico fxFlex></app-grafico>
+    </div>
+  </mat-card>
+</div>

@@ -27,7 +27,7 @@
                 <mat-error *ngIf="recordForm.controls.type.errors?.required">Coloque uma Categoria Please</mat-error>
             </mat-form-field>
 
-            <form formGroupName="charge">
+            <form formGroupName="charge" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
                 <mat-form-field>
                     <mat-label>Type Charge</mat-label>
                     <mat-select [(value)]="charge" (selectionChange)="onChange($event)" formControlName="typeCharge">
@@ -74,7 +74,7 @@
 
 
         <ng-container *ngIf="records?.length>0; else empty">
-            <mat-list>
+            <mat-list class="list">
                 <h3 mat-subheader>Records</h3>
                 <mat-list-item *ngFor="let rec of records">
                     <mat-icon mat-list-icon>folder</mat-icon>
