@@ -1,0 +1,93 @@
+<mat-card>
+    <mat-card-title>
+        Goals
+    </mat-card-title>
+
+    <mat-card-content fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="10px" fxLayoutAlign="space-between stretch">
+        <div fxFlex="45%" fxFlex.gt-sm="100%" fxLayout="column" fxLayoutAlign="space-between">
+            <form [formGroup]="goalForm" (ngSubmit)="save()" #form="ngForm" fxLayout="column">
+                <mat-form-field fxFlex="45%">
+                    <input matInput (keyup.enter)="save()" formControlName="name" name="name" type="text" />
+                    <mat-error *ngIf="name.errors?.required"> Coloque uma Meta Please</mat-error>
+                    <mat-error *ngIf="name.errors?.minlength">Name should be at least 4 characters.</mat-error>
+
+                    <mat-hint>Name of Goal</mat-hint>
+                    <input type="hidden" formControlName="_id" />
+                    <input type="hidden" formControlName="priority" />
+                </mat-form-field>
+
+                <mat-form-field fxFlex="45%">
+                    <input matInput formControlName="value" name="value" />
+                    <mat-error *ngIf="value.errors?.required"> Coloque um Valor Please</mat-error>
+
+                    <mat-hint>Value of Goal</mat-hint>
+                </mat-form-field>
+
+                <div fxLayout="row" fxLayoutAlign="end end">
+                    <button mat-button color="primary" fxFlex="10" type="submit">Save</button>
+                    <button mat-button color="warn" fxFlex="10" type="reset">Cancel</button>
+                </div>
+            </form>
+            <br />
+            Installment risk:
+            <mat-form-field>
+                <mat-select
+                    matNativeControl
+                    required
+                    [(ngModel)]="selectedRisk"
+                    (selectionChange)="alterSelectedRisk()"
+                >
+                    <mat-option value="none">None</mat-option>
+                    <mat-option value="2">50%</mat-option>
+                    <mat-option value="3">30%</mat-option>
+                    <mat-option value="4">25%</mat-option>
+                    <mat-option value="5">20%</mat-option>
+                    <mat-option value="6">15%</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div
+            fxFlex="50%"
+            fxFlex.gt-sm="100%"
+            fxLayout="column"
+            fxLayoutGap="10px"
+            fxLayoutAlign="space-between stretch"
+        >
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                <span>Top-down priority:</span>
+
+                <button mat-flat-button color="primary" (click)="alterPrioritySave()" [disabled]="alterPriority">
+                    Save
+                </button>
+
+                <button mat-flat-button color="accent" (click)="cancelPrioritySave()" [disabled]="alterPriority">
+                    Cancel
+                </button>
+                <button mat-flat-button color="accent" (click)="log()">
+                    Repeat
+                </button>
+            </div>
+
+            <div fxLayout="column" fxLayoutAlign="space-between end center">
+                <div cdkDropList class="example-list" [cdkDropListData]="goalsRef" (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let goal of goalsRef" cdkDrag>
+                        <div fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon>reorder</mat-icon>
+                            {{ goal.priority }}. {{ goal.name }} - {{ goal.value }} / Possibility buy Month:
+                            {{ goal?.possibilityBuy || 'No Possibility' }}
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="end center">
+                            <button mat-icon-button color="accent" (click)="delete(goal)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <button mat-icon-button color="primary" (click)="edit(goal)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

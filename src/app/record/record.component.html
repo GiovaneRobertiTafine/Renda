@@ -1,21 +1,26 @@
-<mat-card fxFlex>
+<mat-card fxFlexAlign>
     <mat-card-title>
         Records
     </mat-card-title>
 
     <mat-card-content>
-        <form [formGroup]="recordForm" fxLayout="column" (ngSubmit)="save()" fxLayout="column"
-            fxLayoutAlign="space-between" #form="ngForm">
-            <input type="hidden" formControlName="_id">
+        <form
+            [formGroup]="recordForm"
+            fxLayout="column"
+            (ngSubmit)="save()"
+            fxLayoutAlign="space-between"
+            #form="ngForm"
+        >
+            <input type="hidden" formControlName="_id" />
 
             <mat-form-field>
-                <input matInput placeholder="Record Name" formControlName="name">
-                <mat-error *ngIf="recordForm.controls.name.errors?.required">Coloque uma Categoria Please</mat-error>
+                <input matInput placeholder="Record Name" formControlName="name" />
+                <mat-error *ngIf="recordForm.controls.name.errors?.required">Coloque uma Nome Please</mat-error>
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput placeholder="Value" type="number" formControlName="value">
-                <mat-error *ngIf="recordForm.controls.value.errors?.required">Coloque uma Categoria Please</mat-error>
+                <input matInput placeholder="Value" type="number" formControlName="value" />
+                <mat-error *ngIf="recordForm.controls.value.errors?.required">Coloque um Valor Please</mat-error>
             </mat-form-field>
 
             <mat-form-field>
@@ -24,45 +29,53 @@
                     <mat-option value="renda">Renda</mat-option>
                     <mat-option value="despesa">Despesa</mat-option>
                 </mat-select>
-                <mat-error *ngIf="recordForm.controls.type.errors?.required">Coloque uma Categoria Please</mat-error>
+                <mat-error *ngIf="recordForm.controls.type.errors?.required">Coloque um Tipo Please</mat-error>
             </mat-form-field>
 
-            <form formGroupName="charge" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-                <mat-form-field>
+            <form
+                formGroupName="charge"
+                fxLayout="column"
+                fxLayout.gt-sm="row"
+                fxLayoutGap="10px"
+                fxLayoutAlign="space-between stretch"
+            >
+                <mat-form-field fxFlex="100%" fxFlex.gt-sm="45%">
                     <mat-label>Type Charge</mat-label>
                     <mat-select [(value)]="charge" (selectionChange)="onChange($event)" formControlName="typeCharge">
                         <mat-option value="unic">Unica</mat-option>
                         <mat-option value="fix">Fixa</mat-option>
                         <mat-option value="parcels">Parcelada</mat-option>
-
                     </mat-select>
-                    <mat-error *ngIf="recordForm.controls.charge.controls.typeCharge.errors?.required">Coloque uma
-                        Categoria Please</mat-error>
+                    <mat-error *ngIf="recordForm.controls.charge.controls.typeCharge.errors?.required"
+                        >Coloque um tipo de Cobrança Please</mat-error
+                    >
                 </mat-form-field>
 
-                <mat-form-field>
-                    <input matInput placeholder="Parcels" type="number" formControlName="parcels" [value]=''>
-                    <mat-error *ngIf="recordForm.controls.charge.controls.parcels.errors?.required">Coloque uma
-                        Categoria Please</mat-error>
+                <mat-form-field fxFlex="100%" fxFlex.gt-sm="45%">
+                    <input matInput placeholder="Parcels" type="number" formControlName="parcels" [value]="" />
+                    <mat-error *ngIf="recordForm.controls.charge.controls.parcels.errors?.required"
+                        >Coloque as Parcelas Please</mat-error
+                    >
                 </mat-form-field>
             </form>
 
             <mat-form-field>
                 <mat-label>Starting month</mat-label>
                 <mat-select [(value)]="month" formControlName="month">
-                    <mat-option *ngFor="let mon of months" [value]="mon">{{mon}}</mat-option>
+                    <mat-option *ngFor="let mon of months" [value]="mon">{{ mon }}</mat-option>
                 </mat-select>
-                <mat-error *ngIf="recordForm.controls.month.errors?.required">Coloque uma Categoria Please</mat-error>
+                <mat-error *ngIf="recordForm.controls.month.errors?.required">Coloque o Mês Please</mat-error>
             </mat-form-field>
 
             <mat-form-field>
                 <mat-label>Categories</mat-label>
                 <mat-select formControlName="categorie">
                     <mat-option *ngFor="let c of categories" [value]="c">
-                        {{c.name}}
+                        {{ c.name }}
                     </mat-option>
                 </mat-select>
-                <mat-error *ngIf="recordForm.controls.categorie.errors?.required">Coloque uma Categoria Please
+                <mat-error *ngIf="recordForm.controls.categorie.errors?.required"
+                    >Coloque uma Categoria Please
                 </mat-error>
             </mat-form-field>
 
@@ -72,17 +85,18 @@
             </div>
         </form>
 
-
-        <ng-container *ngIf="records?.length>0; else empty">
+        <ng-container *ngIf="records?.length > 0; else empty">
             <mat-list class="list">
                 <h3 mat-subheader>Records</h3>
                 <mat-list-item *ngFor="let rec of records">
                     <mat-icon mat-list-icon>folder</mat-icon>
-                    <h4 mat-line>{{ rec.name }} - <small>Starting Month {{rec.month}}</small></h4>
-                    <h3 mat-line>Value: {{ rec.value | currency:"R$ " }} - Type: {{ rec.type }}</h3>
+                    <h4 mat-line>
+                        {{ rec.name }} - <small>Starting Month {{ rec.month }}</small>
+                    </h4>
+                    <h3 mat-line>Value: {{ rec.value | currency: 'R$ ' }} - Type: {{ rec.type }}</h3>
                     <h3 mat-line>Charge: {{ rec.charge?.typeCharge }} - Parcels: {{ rec.charge?.parcels }}</h3>
                     <mat-chip-list mat-line>
-                        <mat-chip>{{rec.categorie?.name}}</mat-chip>
+                        <mat-chip>{{ rec.categorie?.name }}</mat-chip>
                     </mat-chip-list>
                     <button mat-icon-button color="accent" (click)="delete(rec)">
                         <mat-icon>delete</mat-icon>
@@ -96,6 +110,5 @@
         <ng-template #empty>
             <div><em>Empty</em></div>
         </ng-template>
-
     </mat-card-content>
 </mat-card>

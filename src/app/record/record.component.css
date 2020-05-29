@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+}
+
+.list {
+    max-height: 350px;
+    overflow: auto;
+    background-color: rgba(243, 243, 243, 0.5);
+}
+
+mat-card {
+    height: 800px;
+}
+
+/* mat-chip {
+    background-color: #683ab73f !important;
+    color: rgb(56, 56, 56) !important;
+} */

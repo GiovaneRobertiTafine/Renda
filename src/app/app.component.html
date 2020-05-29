@@ -1,19 +1,23 @@
-<mat-toolbar fxLayout color="primary">
-  <mat-toolbar-row>
-    <span>Renda</span>
-  </mat-toolbar-row>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>Renda</span>
+    </mat-toolbar-row>
 </mat-toolbar>
 <div>
-  <mat-card>
-    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="10px" fxLayoutAlign="space-between stretch">
-      <app-categoria fxFlex="100%" fxFlex.gt-sm="45%"></app-categoria>
-      <app-renda fxFlex="100%" fxFlex.gt-sm="55%"></app-renda>
-    </div>
-  </mat-card>
+    <mat-card>
+        <div fxLayout="column" fxLayoutGap="10px">
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="10px" fxLayoutAlign="space-between stretch">
+                <app-categorie fxFlex="100%" fxFlex.gt-sm="45%"></app-categorie>
+                <app-record fxFlex="90%" fxFlex.gt-sm="55%"></app-record>
+            </div>
 
-  <mat-card>
-    <div fxLayout="row" fxLayoutAlign="space-between stretch">
-      <app-grafico fxFlex></app-grafico>
-    </div>
-  </mat-card>
+            <div fxLayout="row" fxLayoutAlign="space-between stretch">
+                <app-chart fxFlex></app-chart>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between stretch">
+                <app-goal fxFlex></app-goal>
+            </div>
+        </div>
+    </mat-card>
 </div>

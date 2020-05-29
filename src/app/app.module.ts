@@ -6,21 +6,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from 'src/app/material.module';
-import { CategoriaComponent } from './categoria/categoria.component';
-import { RendaComponent } from './renda/renda.component';
-import { GraficoComponent } from './grafico/grafico.component';
+import { CategorieComponent } from './categorie/categorie.component';
+import { RecordComponent } from './record/record.component';
+import { ChartComponent } from './chart/chart.component';
+import { GoalComponent } from './goal/goal.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CategoriaComponent,
-    RendaComponent,
-    GraficoComponent
+    CategorieComponent,
+    RecordComponent,
+    ChartComponent,
+    GoalComponent
   ],
   imports: [
     BrowserModule,
@@ -30,8 +34,8 @@ import { NgxEchartsModule } from 'ngx-echarts';
     ReactiveFormsModule,
     HttpClientModule,
     FlexLayoutModule,
-    NgxEchartsModule
-   
+    NgxEchartsModule,
+    DragDropModule
 
   ],
   providers: [],

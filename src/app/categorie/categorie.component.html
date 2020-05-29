@@ -1,16 +1,21 @@
-<mat-card fxFlex>
+<mat-card>
     <mat-card-title>
         Categorie
     </mat-card-title>
 
     <mat-card-content>
-        <form [formGroup]="categoriaForm" fxLayout="column" fxLayoutAlign="space-between" (ngSubmit)="save()"
-            #form="ngForm">
+        <form
+            [formGroup]="categoriaForm"
+            fxLayout="column"
+            fxLayoutAlign="space-between"
+            (ngSubmit)="save()"
+            #form="ngForm"
+        >
             <mat-form-field>
-                <input matInput (keyup.enter)="save()" formControlName="name" name="name">
+                <input matInput (keyup.enter)="save()" formControlName="name" name="name" />
                 <mat-error *ngIf="categoriaForm.controls.name.errors?.required">Coloque uma Categoria Please</mat-error>
                 <mat-hint>Nome da Categoria</mat-hint>
-                <input type="hidden" formControlName="_id">
+                <input type="hidden" formControlName="_id" />
             </mat-form-field>
 
             <div fxLayout="row" fxLayoutAlign="end end">
@@ -32,6 +37,5 @@
                 </button>
             </mat-list-item>
         </mat-list>
-
     </mat-card-content>
 </mat-card>

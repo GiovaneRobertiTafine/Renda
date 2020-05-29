@@ -4,5 +4,9 @@
 
 .list {
     max-height: 800px;
-    overflow: auto
+    overflow: auto;
+}
+
+mat-card {
+    height: 800px;
 }
