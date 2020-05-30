@@ -23,28 +23,30 @@
                     <mat-hint>Value of Goal</mat-hint>
                 </mat-form-field>
 
+                <br />
+                <mat-checkbox [(ngModel)]="checked" (change)="checkedParcel()" [ngModelOptions]="{ standalone: true }"
+                    >Installment option
+                </mat-checkbox>
+
+                <mat-form-field fxFlex="45%">
+                    <input
+                        [hidden]="!checked"
+                        matInput
+                        formControlName="parcelOption"
+                        name="parcelOption"
+                        maxlength="2"
+                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                    />
+                    <mat-error *ngIf="value.errors?.required"> Coloque quantas parcelas Please</mat-error>
+
+                    <mat-hint>Number of installments</mat-hint>
+                </mat-form-field>
+
                 <div fxLayout="row" fxLayoutAlign="end end">
                     <button mat-button color="primary" fxFlex="10" type="submit">Save</button>
                     <button mat-button color="warn" fxFlex="10" type="reset">Cancel</button>
                 </div>
             </form>
-            <br />
-            Installment risk:
-            <mat-form-field>
-                <mat-select
-                    matNativeControl
-                    required
-                    [(ngModel)]="selectedRisk"
-                    (selectionChange)="alterSelectedRisk()"
-                >
-                    <mat-option value="none">None</mat-option>
-                    <mat-option value="2">50%</mat-option>
-                    <mat-option value="3">30%</mat-option>
-                    <mat-option value="4">25%</mat-option>
-                    <mat-option value="5">20%</mat-option>
-                    <mat-option value="6">15%</mat-option>
-                </mat-select>
-            </mat-form-field>
         </div>
 
         <div

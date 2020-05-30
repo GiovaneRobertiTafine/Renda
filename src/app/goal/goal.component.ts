@@ -18,8 +18,10 @@ export class GoalComponent implements OnInit {
         name: ['', [Validators.required, Validators.minLength(4)]],
         value: ['', [Validators.required]],
         priority: [null],
-        possibilityBuy: [''],
+        parcelOption: [{ value: '', disabled: true }, [Validators.pattern('[0-9]{1,2}')]],
     });
+
+    checked = false;
 
     goalEdit: Goal = null;
     alterPriority: boolean = true;
@@ -28,8 +30,6 @@ export class GoalComponent implements OnInit {
     goalsRef: Goal[] = [];
 
     incomeMonth: Array<Goal> = Array();
-
-    selectedRisk = 'none';
 
     months: String[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dez'];
 
@@ -177,8 +177,12 @@ export class GoalComponent implements OnInit {
         });
     }
 
-    alterSelectedRisk() {
-        console.log(this.selectedRisk);
+    checkedParcel() {
+        if (this.checked) {
+            this.goalForm.controls.parcelOption.enable();
+        } else {
+            this.goalForm.controls.parcelOption.disable();
+        }
     }
 
     log() {
@@ -190,6 +194,10 @@ export class GoalComponent implements OnInit {
     }
     get value() {
         return this.goalForm.get('value');
+    }
+
+    get parcelOption() {
+        return this.goalForm.get('parcelOption');
     }
 
     ngOnDestroy() {
